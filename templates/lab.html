@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="images/fevicon.png" type="image/x-icon">
+  <title>LUNG AI</title>
+
+  <!-- bootstrap core css -->
+  <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}"> -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <!--owl slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+  <!-- nice select -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" integrity="sha256-mLBIhmBvigTFWPSCtvdu6a76T+3Xyt+K571hupeFLg4=" crossorigin="anonymous" />
+  <!-- font awesome style -->
+  
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+  <style>
+
+ 
+
+    body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #f8f9fa;
+  color: #495057;
+}
+
+.jumbotron {
+  background-color: #2c7873;
+  color: #ffffff;
+  padding: 3rem 1rem;
+  border-radius: 0;
+  margin-bottom: 0;
+}
+.nice-select {
+  width: 100%;
+}
+
+.jumbotron h1 {
+  font-size: 2.5rem;
+}
+
+.jumbotron p {
+  font-size: 1.25rem;
+}
+
+#upload-section {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+#upload-card {
+  border: 1px solid #ced4da;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#upload-card-header {
+  background-color: #2c7873;
+  color: #ffffff;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+#submit-button {
+  background-color: #28a745;
+  color: #ffffff;
+  border: 1px solid #218838;
+  padding: 0.375rem 1rem;
+  font-size: 0.875rem;
+}
+
+#results-section {
+  margin-top: 20px;
+  display: none;
+  flex: 1;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #343a40;
+  color: #ffffff;
+  padding: 1rem 0;
+  text-align: center;
+}
+ /* CSS for centering the loading spinner and applying a blur effect */
+ #loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.7); /* Adjust the opacity as needed */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 999; /* Ensure it's on top of other elements */
+        backdrop-filter: blur(5px); /* Adjust the blur effect as needed */
+    }
+
+    .spinner-container {
+        text-align: center;
+    }
+  
+  /* Custom CSS class for the Submit button */
+  .btn-custom {
+    background-color: #2c7873 !important; /* Light Orange color with !important */
+    color: #fff !important; /* White text color with !important */
+    /* Add any other custom styles you want */
+  }
+ /* Style the button */
+ #styledButton {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #2c7873;
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    /* Change button color on hover */
+    #styledButton:hover {
+      background-color: #2c787389;
+    }
+
+  </style>
+  
+</head>
+
+<body class="sub_page">
+  <div class="hero_area">
+    <div class="hero_bg_box">
+      <!-- <img src="images/hero-bg.jpg" alt=""> -->
+            <img src="{{ url_for('static', filename='images/main.jpg') }}" alt="Image 1">
+
+    </div>
+    <!-- header section strats -->
+    <header class="header_section">
+      
+      <div class="header_bottom">
+        <div class="container-fluid">
+          <nav class="navbar navbar-expand-lg custom_nav-container ">
+            <a class="navbar-brand " href="/"> LUNG AI </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class=""> </span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav  ">
+                <li class="nav-item ">
+                  <a class="nav-link" href="/">Home </a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="/#about"> About <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/#services">Services</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/#team"> Team </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/#contact">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/lab">Lab</a>
+                </li>
+                
+                
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <!-- end header section -->
+  </div>
+
+
+  <!-- about section -->
+
+ <!-- Image Upload Section -->
+ <div class="container" id="upload-section">
+    <div class="card" id="upload-card">
+      <div class="card-header" id="upload-card-header">
+        <h2 class="text-center">Upload Image</h2>
+      </div>
+      <div class="card-body text-center">
+        <form id="imageForm" enctype="multipart/form-data">
+          <div class="row">
+            <!-- Name input field (take full width on small screens) -->
+            <div class="col-12 col-sm-6">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" name="name" id="name" required>
+              </div>
+            </div>
+  
+            <!-- Gender dropdown (take full width on small screens) -->
+            <div class="col-12 col-sm-6">
+              <div class="form-group">
+                <label for="gender">Gender</label>
+                <select class="form-control" name="gender" id="gender" required>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Phone number input field (take full width) -->
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" class="form-control" name="phone" id="phone" required>
+          </div>
+  
+          <!-- Image input field (take full width) -->
+          <div class="form-group">
+            <label for="image">Select Image</label>
+            <input type="file" class="form-control-file" name="image" id="image" accept="image/*" required>
+          </div>
+  
+          <!-- Submit button (smaller width) centered horizontally with custom CSS class -->
+        <div class="form-group text-center">
+          <button type="button" class="btn btn-custom" id="submit-button" onclick="submitForm()">Submit</button>
+        </div>
+  
+  
+        </form>
+      </div>
+    </div>
+  </div>
+
+  
+  <!-- Results Section -->
+  <div class="container" id="results-section">
+    <h2 class="text-center">Results</h2>
+    <!-- Styled button with ID -->
+  <button id="styledButton" onclick="submitFunction()">Generate Report</button>
+    <div style="width: 100%; margin: auto; margin-bottom: 10%;">
+        <canvas id="predictionsChart"></canvas>
+    </div>
+  </div>
+
+<!-- Add a loading spinner element and overlay for blur effect -->
+<div id="loading-overlay" style="display: none;">
+    <div id="loading-spinner" class="spinner-container">
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <p>Loading...</p>
+    </div>
+</div>
+
+
+
+
+  <!-- about section ends -->
+
+  <!-- info section -->
+  <section class="info_section ">
+    <div class="container">
+      <div class="info_top">
+        <div class="row">
+          <div class="col-md-3 ">
+            <a class="navbar-brand" href="index.html">
+              LUNG AI
+            </a>
+          </div>
+          <div class="col-md-5 ">
+            <div class="info_contact">
+              <!-- <a href="">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                <span>
+                  Location
+                </span>
+              </a> -->
+              <!-- <a href="">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+                <span>
+                  +01 1234567890
+                </span>
+              </a> -->
+            </div>
+          </div>
+          <!-- <div class="col-md-4 ">
+            <div class="social_box">
+              <a href="">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-linkedin" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-instagram" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div> -->
+        </div>
+      </div>
+      <div class="info_bottom">
+        <div class="row">
+          <div class="col-lg-3 col-md-6">
+            <div class="info_detail">
+              <h5>
+                Company
+              </h5>
+              <p>
+                LungAI is a trailblazing force in respiratory healthcare, driven by cutting-edge AI technology. Our mission is to revolutionize lung disease diagnosis globally, ensuring precision, accessibility, and positive health outcomes. Join us in advancing respiratory healthcare with innovative solutions that make a lasting impact.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="info_form">
+              <h5>
+                NEWSLETTER
+              </h5>
+              <form action="">
+                <input type="text" placeholder="Enter Your Email" />
+                <button type="submit">
+                  Subscribe
+                </button>
+              </form>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="info_detail">
+              <h5>
+                Services
+              </h5>
+              <p>
+                LungAI pioneers the transformation of respiratory health with cutting-edge AI technology. Committed to precision and accessibility, we lead the charge in revolutionizing global lung disease diagnostics.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-6">
+            <div class="">
+              <h5>
+                Useful links
+              </h5>
+              <ul class="info_menu">
+                <li>
+                  <a href="/">
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a href="#about">
+                    About
+                  </a>
+                </li>
+                <li>
+                  <a href="#services">
+                    Services
+                  </a>
+                </li>
+                <li>
+                  <a href="#team">
+                    Team
+                  </a>
+                </li>
+
+                <li class="mb-0">
+                  <a href="#contact">
+                    Contact Us
+                  </a>
+                </li>
+                <li>
+                  <a href="/lab">
+                    Lab
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end info_section -->
+
+  <!-- footer section -->
+  <footer class="footer_section">
+    <div class="container">
+      <p>
+        &copy; <span id="displayYear"></span> All Rights Reserved By
+        <!-- <a href="https://html.design/">Free Html Templates</a> -->
+        <strong>LUNG AI Development Team</strong>
+      </p>
+    </div>
+  </footer>
+  <!-- footer section -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <!-- jQery -->
+  <script src="{{ url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
+  <!-- popper js -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <!-- bootstrap js -->
+  <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+  <!-- owl slider -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <!-- nice select -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js" integrity="sha256-Zr3vByTlMGQhvMfgkQ5BtWRSKBGa2QlspKYJnkjZTmo=" crossorigin="anonymous"></script>
+  <!-- custom js -->
+  <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+  <!-- Google Map -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap"></script>
+  <!-- End Google Map -->
+
+  <script>
+    // Function to process image and get disease predictions
+    async function processImage() {
+        try {
+            const formData = new FormData(document.getElementById('imageForm'));
+            const response = await fetch('/process_image', {
+                method: 'POST',
+                body: formData,
+            });
+
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error('Error processing image:', error);
+        }
+    }
+
+    // Function to create chart with fetched data
+    // Function to create chart with fetched data
+async function createChart(predictions, confidences) {
+    // Define all diseases
+    const allDiseases = [
+        "bacterial_pneumonia",
+        "covid",
+        "lung_opacity",
+        "normal",
+        "tuberculosis",
+        "viral_pneumonia"
+    ];
+
+    // Initialize data array with zeros
+    const data = Array(allDiseases.length).fill(0);
+
+    // Find the index of the predicted disease in the allDiseases array
+    const predictedIndex = allDiseases.indexOf(predictions[0]);
+
+    // Set the confidence value at the predictedIndex
+    if (predictedIndex !== -1) {
+        data[predictedIndex] = confidences[0];
+    }
+
+    // Create a bar chart
+    var ctx = document.getElementById('predictionsChart').getContext('2d');
+    var predictionsChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: allDiseases,
+            datasets: [{
+                label: 'Confidences',
+                data: data,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    // Rotate x-axis labels for better readability
+                    maxRotation: 45,
+                    minRotation: 45,
+                },
+                y: {
+                    beginAtZero: true,
+                    max: 100,
+                    callback: function (value) {
+                        return value + '%'; // Display values with '%' symbol
+                    }
+                }
+            }
+        }
+    });
+
+    // Show the results section
+    document.getElementById('results-section').style.display = 'block';
+}
+
+
+    // Function to submit the form
+    async function submitForm() {
+        // Show loading overlay while waiting for the response
+        document.getElementById('loading-overlay').style.display = 'flex';
+
+        try {
+            const data = await processImage();
+
+            if (data) {
+                const predictions = [data.DiseaseName];
+                const confidences = [data.Confidence * 100];
+                createChart(predictions, confidences);
+            } else {
+                console.error('Invalid or missing data:', data);
+            }
+        } finally {
+            // Hide loading overlay after the response is received
+            document.getElementById('loading-overlay').style.display = 'none';
+        }
+    }
+
+
+
+    // Function to generate the report
+    // document.getElementById('styledButton').addEventListener('click', function () {
+    //   // Create a FormData object
+    //   var formData = new FormData();
+
+    //   // Convert Chart.js canvas to Blob
+    //   var canvas = document.getElementById('predictionsChart');
+    //   canvas.toBlob(function (blob) {
+    //     formData.append('graphImage', blob, 'chart.png');
+
+    //     // Send the FormData to the Flask API
+    //     fetch('/save-graph', {
+    //       method: 'POST',
+    //       body: formData
+    //     })
+    //       .then(response => {
+    //         if (response.status === 200) {
+    //           alert('Report saved successfully');
+    //         } else {
+    //           alert('Error saving graph image');
+    //         }
+    //       });
+    //   });
+    // });
+
+    document.getElementById('styledButton').addEventListener('click', function () {
+    // Create a FormData object
+    var formData = new FormData();
+
+    // Convert Chart.js canvas to Blob
+    var canvas = document.getElementById('predictionsChart');
+    canvas.toBlob(function (blob) {
+        formData.append('graphImage', blob, 'chart.png');
+
+        // Send the FormData to the Flask API
+        fetch('/save-graph', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (response.ok) {
+                // Trigger the download
+                response.blob().then(blob => {
+                    const link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = 'modified.pdf';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                });
+            } else {
+                alert('Error saving graph image');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+});
+
+
+</script>
+
+</body>
+
+</html>
